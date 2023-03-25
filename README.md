@@ -1,15 +1,8 @@
 <div align="center">
-	<img src="docs/logo.png" width="200" alt="Tailpipe logo">
-	<h1>Tailpipe</h1>
-	<h5>Tailwind CSS variables in PHP</h5>
+    <img src="docs/logo.png" width="200" alt="Tailpipe logo">
+    <h1>Tailpipe</h1>
+    <h5>Tailwind CSS variables in PHP</h5>
 </div>
-
-<br />
-
-Tailpipe is a PHP package that enables you to access Tailwind CSS variables in your PHP code. It is an extension for Tailwind CSS that generates a .php file containing the variables, which can then be used in your PHP application. This allows you to keep your styling consistent across both your CSS and PHP code, making your application more maintainable and organized.
-
-It also provides tight integration with Laravel, allowing you to access the variables using a global helper function, a facade, or a Blade directive.
-
 <br />
 
 ```php
@@ -21,6 +14,24 @@ $green500 = tailpipe('colors.green.500');
 $margin = tailpipe('spacing.4');
 // -> 1rem
 ```
+
+## Features
+
+- Access Tailwind CSS variables in your PHP code
+- Automatically generated .php file containing the variables
+- Uses a Tailwind plugin, so it updates on every build
+- Integrations for Laravel, but can also be used in other PHP frameworks
+- [Common variables](#enabling-more-variables) are enabled by default, but you can [enable more variables](#enabling-more-variables) if you want
+
+<br />
+
+Tailpipe is a PHP package that enables you to access Tailwind CSS variables in your PHP code. It is an extension for Tailwind CSS that generates a .php file containing the variables, which can then be used in your PHP application. This allows you to keep your styling consistent across both your CSS and PHP code, making your application more maintainable and organized.
+
+It also provides tight integration with Laravel, allowing you to access the variables using a global helper function, a facade, or a Blade directive.
+
+<br />
+
+---
 
 <br />
 
@@ -35,13 +46,7 @@ $margin = tailpipe('spacing.4');
   - [Blade directive](#blade-directive)
 - [Usage in other PHP frameworks](#usage-in-other-php-frameworks)
 
-## Features
-
-- Access Tailwind CSS variables in your PHP code
-- Automatically generated .php file containing the variables
-- Uses a Tailwind plugin, so it updates on every build
-- Integrations for Laravel, but can also be used in other PHP frameworks
-- [Common variables](#enabling-more-variables) are enabled by default, but you can [enable more variables](#enabling-more-variables) if you want
+<br />
 
 ## Installation
 
@@ -78,7 +83,7 @@ yarn add @capevace/tailpipe
 
 module.exports = {
   plugins: [
-	// ..other plugins
+    // ..other plugins
     require('@capevace/tailpipe')
   ],
 };
@@ -113,20 +118,20 @@ const tailpipe = require('@capevace/tailpipe');
 
 module.exports = {
   plugins: [
-	// ..other plugins
-	tailpipe({
-		// Top level filter only
-		filter: (key, value) => {
-			// Return true to include the variable
-			// Return false to exclude the variable
-			return [
-				...tailpipe.defaultVariables,
-				'opacity',
-				'fill',
-				'stroke',
-			].includes(key);
-		}
-	})
+    // ..other plugins
+    tailpipe({
+        // Top level filter only
+        filter: (key, value) => {
+            // Return true to include the variable
+            // Return false to exclude the variable
+            return [
+                ...tailpipe.defaultVariables,
+                'opacity',
+                'fill',
+                'stroke',
+            ].includes(key);
+        }
+    })
   ],
 };
 ```
@@ -165,7 +170,7 @@ You can also use the `@tailpipe` Blade directive:
 {{-- view.blade.php --}}
 
 <div
-	x-data="{ color: '@tailpipe('colors.yellow.500')' }"
+    x-data="{ color: '@tailpipe('colors.yellow.500')' }"
 ></div>
 ```
 
