@@ -1,8 +1,8 @@
-<center>
+<div align="center">
 	<img src="docs/logo.png" width="200" alt="Tailpipe logo">
 	<h1>Tailpipe</h1>
 	<h5>Tailwind CSS variables in PHP</h5>
-</center>
+</div>
 
 <br />
 
