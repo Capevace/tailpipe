@@ -1,0 +1,32 @@
+{
+    "name": "capevace/tailpipe",
+    "description": "A PHP library and TailwindCSS extension that enables the use of tailwind variables in PHP code",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+		"files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Tailpipe\\": "src/"
+        }
+    },
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Tailpipe\\TailpipeServiceProvider"
+			],
+			"aliases": {
+				"Tailpipe": "Tailpipe\\TailpipeFacade"
+			}
+		}
+	},
+    "authors": [
+        {
+            "name": "Lukas Mateffy",
+            "email": "github@mateffy.me"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
