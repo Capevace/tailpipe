@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class TailpipeServiceProvider extends ServiceProvider
-{
+{	
     /**
      * Register the application services.
      */
     public function register()
     {
         // Register the main class to use with the facade
-        $this->app->singleton('tailpipe', function () {
-            return new Tailpipe;
-        });
+        // $this->app->singleton('tailpipe', function () {
+        //     return new Tailpipe;
+        // });
     }
 
 	/**
@@ -23,6 +23,10 @@ class TailpipeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+		$this->app->singleton('tailpipe', function () {
+			return new Tailpipe;
+		});
+		
         $this->registerBladeDirective();
     }
 

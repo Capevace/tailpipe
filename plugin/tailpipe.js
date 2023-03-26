@@ -18,27 +18,41 @@ const defaultVariables = [
 	'lineHeight',
 ];
 
+function filterTheme(theme, include) {
+	const filtered = {};
+
+	for (const [key, value] of Object.entries(theme)) {
+		if (include(key, value)) {
+			filtered[key] = value;
+		}
+	}
+
+	return filtered;
+}
+
+async function writeThemeFile(theme, options) {
+	const processed = filterTheme(theme, options.include);
+
+	const contents = `<?php\n\nreturn ${jsonToPhpArray(processed)};`;
+
+	await fs.writeFile(options.outputPath, contents, 'utf8');
+}
+
 function tailpipe(options) {
 	options = {
-		filter: (key, value) => defaultVariables.includes(key),
-		output: './resources/css/tailpipe.php',
+		include: (key, value) => defaultVariables.includes(key),
+		outputPath: './resources/css/tailpipe.php',
 		...options,
 	};
 
-	return async function tailpipePlugin({ config, theme }) {
-		const json = config();
-		const processed = Object.entries(json)
-			.filter(([key, value]) => options.filter(key, value))
-			.reduce((acc, [key, value]) => {
-				acc[key] = value;
-				return acc;
-			}, {});
+	return async function tailpipePlugin({ config }) {
+		const theme = config('theme');
 
-		const file = `<?php\n\nreturn ${jsonToPhpArray(processed)};`;
-
-		await fs.writeFile(options.output, file, 'utf8');
+		await writeThemeFile(theme, options);
 	};
 }
 
 module.exports = plugin.withOptions(tailpipe);
 module.exports.defaultVariables = defaultVariables;
+module.exports.writeThemeFile = writeThemeFile;
+module.exports.filterTheme = filterTheme;

@@ -44,8 +44,8 @@ It also provides tight integration with Laravel, allowing you to access the vari
   - [Helper function](#helper-function)
   - [Facade](#facade)
   - [Blade directive](#blade-directive)
-- [Usage in other PHP frameworks](#usage-in-other-php-frameworks)
-
+  - [Using the Tailpipe class](#using-the-tailpipe-class)
+- [Required setup for non-Laravel projects](#required-setup-for-non-laravel-projects)
 <br />
 
 ## Installation
@@ -120,8 +120,8 @@ module.exports = {
   plugins: [
     // ..other plugins
     tailpipe({
-        // Top level filter only
-        filter: (key, value) => {
+        // Filters through all top level theme variables
+        include: (key, value) => {
             // Return true to include the variable
             // Return false to exclude the variable
             return [
@@ -135,7 +135,6 @@ module.exports = {
   ],
 };
 ```
-
 
 ## Usage
 
@@ -184,3 +183,40 @@ use Tailpipe\Tailpipe;
 
 $yellow500 = (new Tailpipe)->get('colors.yellow.500');
 ```
+
+## Required setup for non-Laravel projects
+
+By default, the plugin will generate a `tailpipe.php` file in your `resources/css` directory. The path is determined using Laravel's `resource_path` function. 
+
+**If you're not using Laravel, you can have to set the `outputPath` option to a custom path:**
+
+
+```js
+// tailwind.config.js
+
+const tailpipe = require('@capevace/tailpipe');
+
+module.exports = {
+  plugins: [
+    // ..other plugins
+    tailpipe({
+        outputPath: 'path/to/tailpipe.php'
+    })
+  ],
+};
+```
+
+You will also need to set the `TAILPIPE_PATH` environment variable to the path of the `tailpipe.php` file.
+
+In the `.env` file:
+
+```env
+TAILPIPE_PATH=/path/to/tailpipe.php
+```
+
+Or in your PHP code:
+
+```php
+putenv('TAILPIPE_PATH=/path/to/tailpipe.php');
+```
+
