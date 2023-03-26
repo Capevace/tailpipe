@@ -38,5 +38,11 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
-    }
+    },
+	"scripts": {
+		"test": [
+			"npm run test",
+			"vendor/bin/pest"
+		]
+	}
 }
