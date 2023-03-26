@@ -56,3 +56,21 @@ test('Converts deeply nested JSON object to PHP array string', () => {
 		"array('colors' => array('red' => '#ff0000', 'green' => '#00ff00', 'primary' => array('100' => '#f0f8ff', '200' => '#e1f2ff', '300' => '#cfe8ff', '400' => '#bfe0ff', '500' => '#a0d8ff', '600' => '#90d0ff', '700' => '#80c8ff', '800' => '#70c0ff', '900' => '#60b8ff')), 'numbers' => array('one' => 1, 'two' => 2, 'three' => 3))"
 	);
 });
+
+test('Converts JSON object with nested null values', () => {
+	const json = JSON.stringify({
+		colors: {
+			red: '#ff0000',
+			green: null,
+			blue: '#0000ff'
+		}
+	});
+
+	expect(jsonToPhpArray(json)).toBe(
+		"array('colors' => array('red' => '#ff0000', 'green' => null, 'blue' => '#0000ff'))"
+	);
+});
+
+test('Convert null to PHP null', () => {
+	expect(jsonToPhpArray(null)).toBe('null');
+});

@@ -10,6 +10,11 @@ it('can get a custom color', function () {
     expect($color)->toBe('#b2b2b2');
 });
 
+it('can get screens', function () {
+	$spacing = tailpipe('screens.sm');
+	expect($spacing)->toBe('640px');
+});
+
 it('can get spacing', function () {
 	$spacing = tailpipe('spacing.4');
 	expect($spacing)->toBe('1rem');

@@ -111,6 +111,7 @@ By default, only the following variables are processed:
 
 - `colors`
 - `spacing`
+- `screens`
 - `borderWidth`
 - `borderRadius`
 - `fontFamily`

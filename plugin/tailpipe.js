@@ -5,6 +5,7 @@ const jsonToPhpArray = require('./json-to-php');
 const defaultVariables = [
 	'colors',
 	'spacing',
+	'screens',
 	'borderWidth',
 	'borderRadius',
 	'fontFamily',
@@ -17,6 +18,10 @@ const defaultVariables = [
 	'letterSpacing',
 	'lineHeight',
 ];
+
+function defaultFilter(key, value) {
+	return defaultVariables.includes(key);
+}
 
 function filterTheme(theme, include) {
 	const filtered = {};
@@ -40,7 +45,7 @@ async function writeThemeFile(theme, options) {
 
 function tailpipe(options) {
 	options = {
-		include: (key, value) => defaultVariables.includes(key),
+		include: defaultFilter,
 		outputPath: './resources/css/tailpipe.php',
 		...options,
 	};
@@ -56,3 +61,4 @@ module.exports = plugin.withOptions(tailpipe);
 module.exports.defaultVariables = defaultVariables;
 module.exports.writeThemeFile = writeThemeFile;
 module.exports.filterTheme = filterTheme;
+module.exports.defaultFilter = defaultFilter;

@@ -6,7 +6,7 @@ function jsonToPhpArray(json) {
 			return value;
 		} else if (Array.isArray(value)) {
 			return arrayToPhpString(value);
-		} else if (typeof value === 'object') {
+		} else if (typeof value === 'object' && value !== null) {
 			return objectToPhpString(value);
 		} else {
 			return 'null';
@@ -35,7 +35,7 @@ function jsonToPhpArray(json) {
 
 	if (Array.isArray(json)) {
 		return arrayToPhpString(json);
-	} else if (typeof json === 'object') {
+	} else if (typeof json === 'object' && json !== null) {
 		return objectToPhpString(json);
 	} else {
 		return 'null';
