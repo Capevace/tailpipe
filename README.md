@@ -12,8 +12,8 @@
 			/>
 		</a>
 		<img
-			src="https://img.shields.io/github/v/release/capevace/tailpipe"
-			alt="Run tests"
+			src="https://img.shields.io/github/v/release/capevace/tailpipe?include_prereleases"
+			alt="Latest release"
 		/>
 	</div>
 </div>
