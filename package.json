@@ -1,11 +1,11 @@
 {
   "name": "@capevace/tailpipe",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A PHP library and TailwindCSS extension that enables the use of tailwind variables in PHP code",
   "main": "plugin/tailpipe.js",
   "scripts": {
     "test": "jest",
-	"tailwind": "tailwindcss build -o tests/css/tailwind.css"
+    "tailwind": "tailwindcss build -o tests/css/tailwind.css"
   },
   "repository": {
     "type": "git",
