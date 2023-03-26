@@ -4,7 +4,8 @@
   "description": "A PHP library and TailwindCSS extension that enables the use of tailwind variables in PHP code",
   "main": "plugin/tailpipe.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+	"tailwind": "tailwindcss build -o tests/css/tailwind.css"
   },
   "repository": {
     "type": "git",
