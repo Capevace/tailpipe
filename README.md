@@ -11,6 +11,12 @@
 				alt="Run tests"
 			/>
 		</a>
+		<a href="https://github.com/Capevace/tailpipe/actions/workflows/test.yml">
+			<img
+				src="https://img.shields.io/badge/coverage-100%25-brightgreen"
+				alt="Code coverage - 100%"
+			/>
+		</a>
 		<img
 			src="https://img.shields.io/github/v/release/capevace/tailpipe?include_prereleases"
 			alt="Latest release"
