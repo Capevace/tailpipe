@@ -103,7 +103,7 @@ module.exports = {
 };
 ```
 
-This will configure the plugin to generate a `tailpipe.php` file in your `resources/css` directory, containing your `colors` and `spacing` variables.
+This will configure the plugin to generate a `tailpipe.php` file in your `resources/css` directory, containing the theme variables.
 
 #### Enabling more variables
 
