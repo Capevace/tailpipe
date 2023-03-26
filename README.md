@@ -2,6 +2,20 @@
     <img src="docs/logo.png" width="200" alt="Tailpipe logo">
     <h1>Tailpipe</h1>
     <h5>Tailwind CSS variables in PHP</h5>
+	<div>
+		<a 
+			href="https://github.com/Capevace/tailpipe/actions/workflows/test.yml"
+		>
+			<img
+				src="https://github.com/Capevace/tailpipe/actions/workflows/test.yml/badge.svg"
+				alt="Run tests"
+			/>
+		</a>
+		<img
+			src="https://img.shields.io/github/v/release/capevace/tailpipe"
+			alt="Run tests"
+		/>
+	</div>
 </div>
 <br />
 
@@ -220,3 +234,6 @@ Or in your PHP code:
 putenv('TAILPIPE_PATH=/path/to/tailpipe.php');
 ```
 
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
