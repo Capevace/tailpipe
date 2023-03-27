@@ -35,6 +35,9 @@ $green500 = tailpipe('colors.green.500');
 
 $margin = tailpipe('spacing.4');
 // -> 1rem
+
+$green500 = tailpipe('colors.primary.500');
+// -> #your-theme-color
 ```
 
 ## Features
