@@ -1,7 +1,8 @@
 <div align="center">
     <img src="docs/logo.png" width="200" alt="Tailpipe logo">
     <h1>Tailpipe</h1>
-    <h5>Tailwind CSS variables in PHP</h5>
+    <h4>Tailwind CSS variables in PHP</h4>
+	<blockquote>Created by <a href="https://mateffy.me">Lukas Mateffy</a></blockquote>
 	<div>
 		<a 
 			href="https://github.com/Capevace/tailpipe/actions/workflows/test.yml"
