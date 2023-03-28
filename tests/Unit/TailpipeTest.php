@@ -17,6 +17,19 @@ it('compiles the tailpipe blade directive correctly', function () {
     $tailpipeServiceProvider->boot();
 });
 
+it('compiles the tailpipe blade directive correctly with parse option', function () {
+	Blade::shouldReceive('directive')
+		->once()
+		->with('tailpipe', \Mockery::on(function ($callback) {
+			$result = $callback("'colors.yellow.500', parse: true");
+			expect($result)->toBe("<?php echo tailpipe('colors.yellow.500', parse: true); ?>");
+			return true;
+		}));
+
+	$tailpipeServiceProvider = new \Tailpipe\TailpipeServiceProvider(app());
+	$tailpipeServiceProvider->boot();
+});
+
 it('can be used as a class', function () {
     $tailpipe = new TailpipeClass();
     $color = $tailpipe->get('colors.yellow.500');
