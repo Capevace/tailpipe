@@ -73,7 +73,8 @@ It also provides tight integration with Laravel, allowing you to access the vari
 - [Options](#options)
   - [`parse: true`](#parse-bool)
   - [Required setup for non-Laravel projects](#required-setup-for-non-laravel-projects)
-- [Required setup for non-Laravel projects](#required-setup-for-non-laravel-projects)
+  - [Enabling more variables](#enabling-more-variables)
+- [Real-world example](#real-world-example)
 
 <br />
 
