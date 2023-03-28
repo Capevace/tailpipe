@@ -328,6 +328,7 @@ The placeholder resolves to the following image:
 
 ![resulting image](https://via.placeholder.com/640x640/d97706/f3f4f6?text=f3f4f6+d97706)
 
+<br />
 
 ## Changelog
 
