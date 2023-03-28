@@ -293,38 +293,38 @@ Here's a real world example of how you can use Tailpipe in your Laravel applicat
 
 ```blade
 <div 
-	x-data="{
-		init() {
-			// Use tailpipe to get the breakpoint values
+    x-data="{
+        init() {
+            // Use tailpipe to get the breakpoint values
 
-			const breakpoint = @js(@tailpipe('screens.md'));
-			// -> '768px'
+            const breakpoint = @js(@tailpipe('screens.md'));
+            // -> '768px'
 
-			if (document.body.offsetWidth + 'px' > breakpoint) {
-				this.initDesktop();
-			} else {
-				this.initMobile();
-			}
-		},
-		///
-	}"
+            if (document.body.offsetWidth + 'px' > breakpoint) {
+                this.initDesktop();
+            } else {
+                this.initMobile();
+            }
+        },
+        ///
+    }"
 >
-	@php
-		// Providing `parse: true` as an option results in a value with units removed
-		
-		// parse:true removes `#`
-		$background = tailpipe('colors.gray.100', parse: true);
-		// -> 'f3f4f6'
-		
-		$foreground = tailpipe('colors.primary.600', parse: true);
-		// -> 'd97706'
-		
-		// parse:true removes `px`
-		$width = intval(tailpipe('screens.sm', parse: true));
-		// -> 640;
-	@endphp
-	
-	<img src="https://via.placeholder.com/{{ $width }}x{{ $width }}/{{ $background }}/{{ $foreground }}?text={{ $background }}+{{ $foreground }}" />
+    @php
+        // Providing `parse: true` as an option results in a value with units removed
+        
+        // parse:true removes `#`
+        $background = tailpipe('colors.gray.100', parse: true);
+        // -> 'f3f4f6'
+        
+        $foreground = tailpipe('colors.primary.600', parse: true);
+        // -> 'd97706'
+        
+        // parse:true removes `px`
+        $width = intval(tailpipe('screens.sm', parse: true));
+        // -> 640;
+    @endphp
+    
+    <img src="https://via.placeholder.com/{{ $width }}x{{ $width }}/{{ $background }}/{{ $foreground }}?text={{ $background }}+{{ $foreground }}" />
 </div>
 ```
 The placeholder resolves to the following image:
