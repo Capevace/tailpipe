@@ -320,7 +320,7 @@ Here's a real world example of how you can use Tailpipe in your Laravel applicat
         // -> 'd97706'
         
         // parse:true removes `px`
-        $width = intval(tailpipe('screens.sm', parse: true));
+        $width = tailpipe('screens.sm', parse: true);
         // -> 640;
     @endphp
     
