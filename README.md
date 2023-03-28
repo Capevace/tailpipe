@@ -174,8 +174,6 @@ $yellow500 = (new Tailpipe)->get('colors.yellow.500');
 
 The `tailpipe()` helper function accepts the following options:
 
-<br />
-
 ### `parse: bool`
 
 If `parse` is set to `true`, the value will be parsed and returned as a string without units. This is useful if you want to use the value in a script or to calculate with it, for example.
