@@ -1,7 +1,7 @@
 <div align="center">
     <img src="docs/logo.png" width="200" alt="Tailpipe logo">
-    <h1>Tailpipe</h1>
-    <h5>Tailwind CSS variables in PHP</h5>
+	<h1>Tailpipe</h1>
+    <h3>Tailwind CSS variables in PHP</h3><br />
 	<div>
 		<a 
 			href="https://github.com/Capevace/tailpipe/actions/workflows/test.yml"
@@ -22,6 +22,8 @@
 			alt="Latest release"
 		/>
 	</div>
+	<h6><em>Made by <a href="https://mateffy.me">Lukas Mateffy</a></em></h6>
+
 </div>
 <br />
 
@@ -33,6 +35,9 @@ $green500 = tailpipe('colors.green.500');
 
 $margin = tailpipe('spacing.4');
 // -> 1rem
+
+$primary = tailpipe('colors.primary.500');
+// -> #your-theme-color
 ```
 
 ## Features
@@ -65,14 +70,20 @@ It also provides tight integration with Laravel, allowing you to access the vari
   - [Facade](#facade)
   - [Blade directive](#blade-directive)
   - [Using the Tailpipe class](#using-the-tailpipe-class)
+- [Options](#options)
+  - [`parse: true`](#parse-bool)
+  - [Required setup for non-Laravel projects](#required-setup-for-non-laravel-projects)
 - [Required setup for non-Laravel projects](#required-setup-for-non-laravel-projects)
+
 <br />
 
 ## Installation
 
 To install the Tailpipe package, you will need to install both the Laravel package `capevace/tailpipe` and the Tailwind CSS plugin JS package `@capevace/tailpipe`.
 
-### Package Installation
+<br />
+
+### PHP Package Installation
 
 1. Install the package using Composer:
 
@@ -80,7 +91,9 @@ To install the Tailpipe package, you will need to install both the Laravel packa
 composer require capevace/tailpipe
 ```
 
-2. The package will automatically register its service provider and facade in your Laravel application.
+2. The package will automatically register its service provider and facade in your Laravel application, if you're using it.
+
+<br />
 
 ### Tailwind CSS Plugin Installation
 
@@ -88,12 +101,6 @@ composer require capevace/tailpipe
 
 ```
 npm install @capevace/tailpipe
-```
-
-or
-
-```
-yarn add @capevace/tailpipe
 ```
 
 2. Add the plugin to your `tailwind.config.js` file:
@@ -111,51 +118,7 @@ module.exports = {
 
 This will configure the plugin to generate a `tailpipe.php` file in your `resources/css` directory, containing the theme variables.
 
-#### Enabling more variables
-
-By default, only the following variables are processed:
-
-- `colors`
-- `spacing`
-- `screens`
-- `borderWidth`
-- `borderRadius`
-- `fontFamily`
-- `fontSize`
-- `fontWeight`
-- `height`
-- `width`
-- `zIndex`
-- `boxShadow`
-- `letterSpacing`
-- `lineHeight`
-
-
-
-```js
-// tailwind.config.js
-
-const tailpipe = require('@capevace/tailpipe');
-
-module.exports = {
-  plugins: [
-    // ..other plugins
-    tailpipe({
-        // Filters through all top level theme variables
-        include: (key, value) => {
-            // Return true to include the variable
-            // Return false to exclude the variable
-            return [
-                ...tailpipe.defaultVariables,
-                'opacity',
-                'fill',
-                'stroke',
-            ].includes(key);
-        }
-    })
-  ],
-};
-```
+<br />
 
 ## Usage
 
@@ -205,7 +168,40 @@ use Tailpipe\Tailpipe;
 $yellow500 = (new Tailpipe)->get('colors.yellow.500');
 ```
 
-## Required setup for non-Laravel projects
+<br />
+
+## Options
+
+The `tailpipe()` helper function accepts the following options:
+
+<br />
+
+### `parse: bool`
+
+If `parse` is set to `true`, the value will be parsed and returned as a string without units. This is useful if you want to use the value in a script or to calculate with it, for example.
+
+```php
+$yellow500 = tailpipe('colors.yellow.500', parse: true);
+// -> 'fbbf24', without the `#`
+
+$spacing = tailpipe('screens.md', parse: true) / 2;
+// -> 768 (integer without the `px`) / 2 = 384
+```
+
+The following values will be parsed:
+
+| Type | Example Input (string) | Example Output |
+| --- | --- | --- |
+| hex codes | `"#fbbf24"` | `"fbbf24"`: string |
+| integers | `"768px"` | `768`: int |
+| floats | `"0.5"` | `0.5`: float |
+| percentages | `"50%"` | `0.5`: float | 
+
+Numbers will be parsed from the following units: `px`, `rem`, `em`, `vh`, `vw`, `vmin`, `vmax`, `ms`, `s`, `%`, `deg`, `rad`, `turn`.
+
+<br />
+
+### Required setup for non-Laravel projects
 
 By default, the plugin will generate a `tailpipe.php` file in your `resources/css` directory. The path is determined using Laravel's `resource_path` function. 
 
@@ -240,6 +236,101 @@ Or in your PHP code:
 ```php
 putenv('TAILPIPE_PATH=/path/to/tailpipe.php');
 ```
+
+<br />
+
+### Enabling more variables
+
+By default, only the following variables are processed:
+
+- `colors`
+- `spacing`
+- `screens`
+- `borderWidth`
+- `borderRadius`
+- `fontFamily`
+- `fontSize`
+- `fontWeight`
+- `height`
+- `width`
+- `zIndex`
+- `boxShadow`
+- `letterSpacing`
+- `lineHeight`
+
+
+
+```js
+// tailwind.config.js
+
+const tailpipe = require('@capevace/tailpipe');
+
+module.exports = {
+  plugins: [
+    // ..other plugins
+    tailpipe({
+        // Filters through all top level theme variables
+        include: (key, value) => {
+            // Return true to include the variable
+            // Return false to exclude the variable
+            return [
+                ...tailpipe.defaultVariables,
+                'opacity',
+                'fill',
+                'stroke',
+            ].includes(key);
+        }
+    })
+  ],
+};
+```
+
+<br />
+
+## Real World Example
+
+Here's a real world example of how you can use Tailpipe in your Laravel application. This example uses the Alpine `x-data` directive to initialize a component based on the current breakpoint and loads a placeholder image with the correct theme colors.
+
+```blade
+<div 
+	x-data="{
+		init() {
+			// Use tailpipe to get the breakpoint values
+
+			const breakpoint = @js(@tailpipe('screens.md'));
+			// -> '768px'
+
+			if (document.body.offsetWidth + 'px' > breakpoint) {
+				this.initDesktop();
+			} else {
+				this.initMobile();
+			}
+		},
+		///
+	}"
+>
+	@php
+		// Providing `parse: true` as an option results in a value with units removed
+		
+		// parse:true removes `#`
+		$background = tailpipe('colors.gray.100', parse: true);
+		// -> 'f3f4f6'
+		
+		$foreground = tailpipe('colors.primary.600', parse: true);
+		// -> 'd97706'
+		
+		// parse:true removes `px`
+		$width = intval(tailpipe('screens.sm', parse: true));
+		// -> 640;
+	@endphp
+	
+	<img src="https://via.placeholder.com/{{ $width }}x{{ $width }}/{{ $background }}/{{ $foreground }}?text={{ $background }}+{{ $foreground }}" />
+</div>
+```
+The placeholder resolves to the following image:
+
+![resulting image](https://via.placeholder.com/640x640/d97706/f3f4f6?text=f3f4f6+d97706)
+
 
 ## Changelog
 

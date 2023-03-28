@@ -17,6 +17,7 @@ const defaultVariables = [
 	'boxShadow',
 	'letterSpacing',
 	'lineHeight',
+	'opacity',
 ];
 
 function defaultFilter(key, value) {
