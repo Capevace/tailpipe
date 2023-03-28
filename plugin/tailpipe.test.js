@@ -45,6 +45,7 @@ test('Has default filter', () => {
 		'boxShadow',
 		'letterSpacing',
 		'lineHeight',
+		'opacity'
 	];
 
 	expect(sortedKeys).toEqual(expectedKeys.sort());

@@ -1,5 +1,10 @@
 <?php
 
+it('returns null if the path does not exist', function () {
+	$value = tailpipe('does.not.exist');
+	expect($value)->toBeNull();
+});
+
 it('can get a built-in color', function () {
     $color = tailpipe('colors.yellow.500');
     expect($color)->toBe('#eab308');
