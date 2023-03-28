@@ -43,7 +43,7 @@ $primary = tailpipe('colors.primary.500');
 ## Features
 
 - Access Tailwind CSS variables in your PHP code
-- Automatically generated .php file containing the variables
+- Generates .php file containing your theme variables
 - Uses a Tailwind plugin, so it updates on every build
 - Integrations for Laravel, but can also be used in other PHP frameworks
 - [Common variables](#enabling-more-variables) are enabled by default, but you can [enable more variables](#enabling-more-variables) if you want
