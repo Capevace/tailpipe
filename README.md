@@ -63,7 +63,6 @@ It also provides tight integration with Laravel, allowing you to access the vari
 - [Installation](#installation)
   - [Package Installation](#package-installation)
   - [Tailwind CSS Plugin Installation](#tailwind-css-plugin-installation)
-    - [Enabling more variables](#enabling-more-variables)
 - [Usage](#usage)
   - [Helper function](#helper-function)
   - [Facade](#facade)
