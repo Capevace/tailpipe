@@ -303,8 +303,7 @@ Here's a real world example of how you can use Tailpipe in your Laravel applicat
             } else {
                 this.initMobile();
             }
-        },
-        ///
+        }
     }"
 >
     @php
