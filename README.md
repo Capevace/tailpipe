@@ -167,6 +167,16 @@ use Tailpipe\Tailpipe;
 $yellow500 = (new Tailpipe)->get('colors.yellow.500');
 ```
 
+When using the Tailpipe class directly, you can pass along the filepath to your `tailpipe.php` file.
+This will be used in that specific instance, allowing you to use multiple `tailpipe.php` files per project.
+
+```php
+// Using the Tailpipe class
+use Tailpipe\Tailpipe;
+
+$yellow500 = (new Tailpipe('/my/custom/path/tailpipe.php'))->get('colors.yellow.500');
+```
+
 <br />
 
 ## Options
