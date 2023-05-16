@@ -1,6 +1,6 @@
 {
   "name": "@capevace/tailpipe",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A PHP library and TailwindCSS extension that enables the use of tailwind variables in PHP code",
   "main": "plugin/tailpipe.js",
   "scripts": {
