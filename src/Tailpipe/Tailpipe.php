@@ -2,32 +2,33 @@
 
 namespace Tailpipe;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Arr;
-use InvalidArgumentException;
 
 class Tailpipe
 {
+	protected string $path;
     protected ?array $tailwind = null;
+
+    public function __construct(?string $path = null)
+    {
+		$this->path = $path ?? env('TAILPIPE_PATH', resource_path('css/tailpipe.php'));
+    }
 
     protected function initIfRequired(): void
     {
         if ($this->tailwind === null) {
-            $this->tailwind = include $this->getTailpipePath();
+            $value = include $this->path;
+
+            $this->tailwind = $value;
         }
     }
 
-	protected function getTailpipePath(): string
-	{
-		return env('TAILPIPE_PATH') ?? resource_path('css/tailpipe.php');
-	}
-
 	/**
 	 * Get a value from the tailwind config.
-	 * 
+	 *
 	 * @param string $path The path to the value. E.g. "colors.red.500"
 	 * @param bool $parse Whether to parse the value. This will remove hashtags from hex or units from numbers.
-	 * @return string|int|float|array|null 
+	 * @return string|int|float|array|null
 	 */
     public function get(string $path, bool $parse = false): string|array|int|float|null
     {
@@ -44,12 +45,12 @@ class Tailpipe
 
 	/**
 	 * Tries to parse a value, if it is a string.
-	 * 
+	 *
 	 * - Replaces the hashtag from hex values.
 	 * - Removes units from numbers.
-	 * 
-	 * @param mixed $value 
-	 * @return mixed 
+	 *
+	 * @param mixed $value
+	 * @return mixed
 	 */
 	public function parseValue(mixed $value): mixed
 	{
@@ -94,4 +95,9 @@ class Tailpipe
 			return $value;
 		}
 	}
+
+    public static function path(string $path): static
+    {
+        return new static($path);
+    }
 }

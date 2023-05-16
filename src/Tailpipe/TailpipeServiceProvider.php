@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class TailpipeServiceProvider extends ServiceProvider
-{	
+{
     /**
      * Register the application services.
      */
@@ -24,9 +24,9 @@ class TailpipeServiceProvider extends ServiceProvider
     public function boot()
     {
 		$this->app->singleton('tailpipe', function () {
-			return new Tailpipe;
+			return new Tailpipe(env('TAILPIPE_PATH') ?? resource_path('css/tailpipe.php'));
 		});
-		
+
         $this->registerBladeDirective();
     }
 
